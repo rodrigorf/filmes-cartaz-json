@@ -12,6 +12,7 @@ Como funciona?
 	"data": "02/03/2017\n(2h17min)",
 	"poster": "http://br.web.img1.acsta.net/cx_160_213/b_1_d6d6d6/pictures/16/10/05/19/59/363613.jpg"
 },
+
 {
 	"sinopse": "Moradora de uma pequena aldeia francesa, Bela (Emma Watson) tem o pai capturado pela Fera (Dan Stevens) e decide entregar sua vida ao estranho ser...",
 	"nome": "A Bela e a Fera",
