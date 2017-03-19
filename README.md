@@ -1,4 +1,5 @@
 Como funciona?
+-----------------
 
 1. Acesse o arquivo /web/flask/filmesCartazCinema.py
 2. Execute com python e acesse o endereço local no seu PC: http://127.0.0.1:5000/
