@@ -1,0 +1,5 @@
+{
+    // for the documentation about the tasks.json format
+    "template": "adoroCinema.json",
+    "urlOrigem": "http://www.adorocinema.com/filmes/em-cartaz/estreias/"
+}
