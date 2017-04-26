@@ -1,8 +1,7 @@
 from flask import Flask, jsonify
 from bs4 import BeautifulSoup
-import urllib      
-#import html
-
+import urllib   
+import os   
 
 app = Flask(__name__)
 
@@ -25,5 +24,7 @@ def filmes():
                 
     return jsonify({'filmes': data})
 
-if __name__ == "__main__":
-    app.run(debug=True)
+if __name__ == '__main__':
+    # Bind to PORT if defined, otherwise default to 5000.
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
