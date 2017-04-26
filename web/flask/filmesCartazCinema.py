@@ -1,13 +1,14 @@
-from flask import Flask
+from flask import Flask, jsonify
 from bs4 import BeautifulSoup
 import urllib.request      
 import html
 import json
 
+
 app = Flask(__name__)
 
-@app.route("/")
-def summary():
+@app.route('/api/v1/filmes', methods=['GET'])
+def filmes():
     html_doc = urllib.request.urlopen("http://www.adorocinema.com/filmes/numero-cinemas/").read()
     soup = BeautifulSoup(html_doc, "html.parser")
 
@@ -22,13 +23,15 @@ def summary():
                   'poster' : imgObj.img['src'].strip(),
                   'sinopse' : sinopseObj.text.strip(),
                   'data' :  dataObj.text.strip()})
-
-    response = app.response_class(
-        response=json.dumps(data),
-        status=200,
-        mimetype='application/json'
-    )
-    return response
+                
+    # response = app.response_class(
+    #     response=json.dumps(data),
+    #     status=200,
+    #     mimetype='application/json'
+    # )
+    # return response
+    
+    return jsonify({'filmes': data})
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
