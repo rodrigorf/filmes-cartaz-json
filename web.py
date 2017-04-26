@@ -1,8 +1,7 @@
 from flask import Flask, jsonify
 from bs4 import BeautifulSoup
 import urllib      
-import html
-import json
+#import html
 
 
 app = Flask(__name__)
