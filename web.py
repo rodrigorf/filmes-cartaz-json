@@ -24,13 +24,6 @@ def filmes():
                   'sinopse' : sinopseObj.text.strip(),
                   'data' :  dataObj.text.strip()})
                 
-    # response = app.response_class(
-    #     response=json.dumps(data),
-    #     status=200,
-    #     mimetype='application/json'
-    # )
-    # return response
-    
     return jsonify({'filmes': data})
 
 if __name__ == "__main__":
