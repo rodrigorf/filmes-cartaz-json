@@ -1,6 +1,6 @@
 from flask import Flask, jsonify
 from bs4 import BeautifulSoup
-import urllib.request      
+import urllib      
 import html
 import json
 
