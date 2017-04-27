@@ -1,13 +1,13 @@
 from flask import Flask, jsonify
 from bs4 import BeautifulSoup
-import urllib 
+from urllib.request import urlopen, Request
 import os   
 
 app = Flask(__name__)
 
 @app.route('/api/v1/filmes', methods=['GET'])
 def filmes():
-    html_doc = urllib.request.urlopen("http://www.adorocinema.com/filmes/numero-cinemas/").read()
+    html_doc = urlopen("http://www.adorocinema.com/filmes/numero-cinemas/").read()
     soup = BeautifulSoup(html_doc, "html.parser")
 
     data = []
