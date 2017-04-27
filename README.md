@@ -4,6 +4,7 @@ Como funciona?
 1. Acesse o arquivo /web/flask/filmesCartazCinema.py
 2. Execute com python e acesse o endereço local no seu PC: http://127.0.0.1:5000/
 3. É mostrada a lista em formato JSON com base na URL do site AdoroCinema em: http://www.adorocinema.com/filmes/numero-cinemas/
+4. A lista pode ser visualizada aqui: https://filmespy.herokuapp.com/api/v1/filmes
 
 Estrutura do retorno em JSON
 -----------------
