@@ -1,5 +1,6 @@
 from flask import Flask, jsonify
 from bs4 import BeautifulSoup
+from urllib.request import urlopen, Request
 import os   
 
 app = Flask(__name__)
