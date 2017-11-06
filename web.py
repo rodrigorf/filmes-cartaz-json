@@ -13,7 +13,7 @@ def filmes():
     soup = BeautifulSoup(html_doc, "html.parser")
 
     data = []
-    for dataBox in soup.find_all("div", class_="card card-entity card-entity-list cf hred"):
+    for dataBox in soup.find_all("div", class_="card card-entity card-entity-list cf"):
         nomeObj = dataBox.find("h2", class_="meta-title")
         imgObj = dataBox.find(class_="thumbnail ")
         sinopseObj = dataBox.find("div", class_="synopsis")
