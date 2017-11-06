@@ -1,14 +1,12 @@
 from flask import Flask, jsonify, request, redirect
 from bs4 import BeautifulSoup
-#from urllib.request import urlopen, Request
-from urllib2 import urlopen
+from urllib.request import urlopen, Request
+#from urllib2 import urlopen
 import os   
 
 app = Flask(__name__)
 
 #Criar GetByID: http://blog.luisrei.com/articles/flaskrest.html
-
-#rota normal
 
 @app.route('/')
 def filmes_home():
