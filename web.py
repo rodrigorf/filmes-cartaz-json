@@ -31,7 +31,7 @@ def filmes():
                         'sinopse' : sinopseObj.text.strip(),
                         'data' :  dataObj.text[1:23].strip().replace('/',' '),
                         'link' : detailsLink,
-                        'fullSinopse': fullSinopse.text})
+                        'sinopseFull': fullSinopse.text})
                 
     return jsonify({'filmes': data})
 
