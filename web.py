@@ -7,9 +7,40 @@ app = Flask(__name__)
 
 #Criar GetByID: http://blog.luisrei.com/articles/flaskrest.html
 
+@app.route('/api/v1/filmes', methods=['GET'])
+def NotasEspectadores(page_id):
+    URL = "http://www.adorocinema.com/filmes/todos-filmes/notas-espectadores/"
+    
+    html_doc = urlopen(URL).read()
+    soup = BeautifulSoup(html_doc, "html.parser")
+    data = []
+    for dataBox in soup.find_all("div", class_="data_box"):
+        titleObj = dataBox.find("a", class_="no_underline")
+        imgObj = dataBox.find(class_="img_side_content").find_all(class_="acLnk")[0]
+        sinopseObj = dataBox.find("div", class_="content").find_all("p")[0]
+        dateObj = dataBox.find("div", class_="content").find("div", class_="oflow_a")
+        movieLinkObj = dataBox.find(class_="img_side_content").find_all("a")[0]
+        detailsLink = 'http://www.adorocinema.com' + movieLinkObj.attrs['href']
+
+        #LOAD FULL SINOPSE 
+        htmldocMovieDetail = urlopen(detailsLink).read()
+        soupMovieDetail = BeautifulSoup(htmldocMovieDetail, "html.parser")
+        fullSinopse = soupMovieDetail.find(class_="synopsis-txt")        
+
+        data.append({'titulo': titleObj.text.strip(),
+                    'poster' : imgObj.img['src'].strip(), #.decode_contents(formatter="html")
+                    'sinopse' : sinopseObj.text.strip(),
+                    'data' :  dateObj.text[0:11].strip(),
+                    'link' : detailsLink,
+                    'sinopseFull': fullSinopse.text})
+                
+    return jsonify({'filmes': data})  
+
 @app.route('/api/v1/filmes/<page_id>', methods=['GET'])
 def NotasEspectadores(page_id):
-    URL = "http://www.adorocinema.com/filmes/todos-filmes/notas-espectadores/?page={}".format(page_id)
+    URL = "http://www.adorocinema.com/filmes/todos-filmes/notas-espectadores/"
+    URL = URL + "?page={}".format(page_id)
+    
     html_doc = urlopen(URL).read()
     soup = BeautifulSoup(html_doc, "html.parser")
     data = []
