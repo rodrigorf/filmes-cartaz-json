@@ -7,9 +7,10 @@ app = Flask(__name__)
 
 #Criar GetByID: http://blog.luisrei.com/articles/flaskrest.html
 
-@app.route('/api/v1/filmes/todos', methods=['GET'])
-def NotasEspectadores():
-    html_doc = urlopen("http://www.adorocinema.com/filmes/todos-filmes/notas-espectadores/").read()
+@app.route('/api/v1/filmes/<page_id>', methods=['GET'])
+def NotasEspectadores(page_id):
+    URL = "http://www.adorocinema.com/filmes/todos-filmes/notas-espectadores/?page={}".format(page_id)
+    html_doc = urlopen(URL).read()
     soup = BeautifulSoup(html_doc, "html.parser")
     data = []
     for dataBox in soup.find_all("div", class_="data_box"):
@@ -35,7 +36,7 @@ def NotasEspectadores():
     return jsonify({'filmes': data})    
 
 @app.route('/api/v1/filmes/emcartaz', methods=['GET'])
-def filmes():
+def EmCartaz():
     html_doc = urlopen("http://www.adorocinema.com/filmes/numero-cinemas/").read()
     soup = BeautifulSoup(html_doc, "html.parser")
 
