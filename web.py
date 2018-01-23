@@ -38,8 +38,7 @@ def filmes():
 
 @app.route('/api/v1/filmes/<page_id>', methods=['GET'])
 def NotasEspectadores(page_id):
-    URL = "http://www.adorocinema.com/filmes/todos-filmes/notas-espectadores/"
-    URL = URL + "?page={}".format(page_id)
+    URL = "http://www.adorocinema.com/filmes/todos-filmes/notas-espectadores/?page={}".format(page_id)
     
     html_doc = urlopen(URL).read()
     soup = BeautifulSoup(html_doc, "html.parser")
