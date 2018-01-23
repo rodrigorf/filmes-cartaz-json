@@ -8,7 +8,7 @@ app = Flask(__name__)
 #Criar GetByID: http://blog.luisrei.com/articles/flaskrest.html
 
 @app.route('/api/v1/filmes', methods=['GET'])
-def NotasEspectadores(page_id):
+def filmes():
     URL = "http://www.adorocinema.com/filmes/todos-filmes/notas-espectadores/"
     
     html_doc = urlopen(URL).read()
