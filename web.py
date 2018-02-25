@@ -20,15 +20,18 @@ def filmes():
         sinopseObj = dataBox.find("div", class_="content").find_all("p")[0]
         dateObj = dataBox.find("div", class_="content").find("div", class_="oflow_a")
         movieLinkObj = dataBox.find(class_="img_side_content").find_all("a")[0]
+        generoObj = dataBox.find("div", class_="content").find_all('li')[3].find('div',class_="oflow_a")
         detailsLink = 'http://www.adorocinema.com' + movieLinkObj.attrs['href']
 
         #LOAD FULL SINOPSE 
         htmldocMovieDetail = urlopen(detailsLink).read()
         soupMovieDetail = BeautifulSoup(htmldocMovieDetail, "html.parser")
-        fullSinopse = soupMovieDetail.find(class_="synopsis-txt")        
+        fullSinopse = soupMovieDetail.find(class_="synopsis-txt")     
+        fullImgObj = soupMovieDetail.find("meta",  property="og:image")   
 
         data.append({'titulo': titleObj.text.strip(),
-                    'poster' : imgObj.img['src'].strip(), #.decode_contents(formatter="html")
+                    'genero': generoObj.text.replace('\n','').strip(),
+                    'poster' : fullImgObj["content"], 
                     'sinopse' : sinopseObj.text.strip(),
                     'data' :  dateObj.text[0:11].strip(),
                     'link' : detailsLink,
@@ -49,15 +52,18 @@ def NotasEspectadores(page_id):
         sinopseObj = dataBox.find("div", class_="content").find_all("p")[0]
         dateObj = dataBox.find("div", class_="content").find("div", class_="oflow_a")
         movieLinkObj = dataBox.find(class_="img_side_content").find_all("a")[0]
+        generoObj = dataBox.find("div", class_="content").find_all('li')[3].find('div',class_="oflow_a")
         detailsLink = 'http://www.adorocinema.com' + movieLinkObj.attrs['href']
 
         #LOAD FULL SINOPSE 
         htmldocMovieDetail = urlopen(detailsLink).read()
         soupMovieDetail = BeautifulSoup(htmldocMovieDetail, "html.parser")
         fullSinopse = soupMovieDetail.find(class_="synopsis-txt")        
+        fullImgObj = soupMovieDetail.find("meta",  property="og:image")   
 
         data.append({'titulo': titleObj.text.strip(),
-                    'poster' : imgObj.img['src'].strip(), #.decode_contents(formatter="html")
+                    'genero': generoObj.text.replace('\n','').strip(),
+                    'poster' : fullImgObj["content"], 
                     'sinopse' : sinopseObj.text.strip(),
                     'data' :  dateObj.text[0:11].strip(),
                     'link' : detailsLink,
@@ -97,4 +103,4 @@ if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.
     port = int(os.environ.get('PORT', 5000))
     # Tem que ser 0.0.0.0 para rodar no Heroku
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='127.0.0.1', port=port)
