@@ -26,7 +26,7 @@ def filmes():
         #LOAD FULL SINOPSE 
         htmldocMovieDetail = urlopen(detailsLink).read()
         soupMovieDetail = BeautifulSoup(htmldocMovieDetail, "html.parser")
-        fullSinopse = soupMovieDetail.find(class_="synopsis-txt")     
+        fullSinopse = soupMovieDetail.find(class_="content-txt")     
         fullImgObj = soupMovieDetail.find("meta",  property="og:image")   
 
         data.append({'titulo': titleObj.text.strip(),
@@ -58,7 +58,7 @@ def NotasEspectadores(page_id):
         #LOAD FULL SINOPSE 
         htmldocMovieDetail = urlopen(detailsLink).read()
         soupMovieDetail = BeautifulSoup(htmldocMovieDetail, "html.parser")
-        fullSinopse = soupMovieDetail.find(class_="synopsis-txt")        
+        fullSinopse = soupMovieDetail.find(class_="content-txt")        
         fullImgObj = soupMovieDetail.find("meta",  property="og:image")   
 
         data.append({'titulo': titleObj.text.strip(),
@@ -88,7 +88,7 @@ def EmCartaz():
         #LOAD FULL SINOPSE 
         htmldocMovieDetail = urlopen(detailsLink).read()
         soupMovieDetail = BeautifulSoup(htmldocMovieDetail, "html.parser")
-        fullSinopse = soupMovieDetail.find(class_="synopsis-txt")        
+        fullSinopse = soupMovieDetail.find(class_="content-txt")        
 
         data.append({   'nome': nomeObj.text.strip(),
                         'poster' : imgObj.img['data-src'].strip(),
@@ -103,4 +103,4 @@ if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.
     port = int(os.environ.get('PORT', 5000))
     # Tem que ser 0.0.0.0 para rodar no Heroku
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='127.0.0.1', port=port)
